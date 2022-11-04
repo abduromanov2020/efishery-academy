@@ -1,0 +1,48 @@
+version: '1' 
+
+services:
+  # Database
+  alfthdb:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    networks:
+      - alfthwp
+  # phpmyadmin
+  alfthphpmyadmin :
+    depends_on:
+      - alfthdb
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    ports: 
+      - '8080:80'
+    environment: 
+      PMA_HOST: alfthdb
+      MYSQL_ROOT_PASSWORD: password
+    networks :
+      - alfthwp
+  # Wordpress
+  alfthwordpress :
+    depends_on:
+      - alfthdb
+    image: wordpress:latest
+    ports:
+      - '8000:80'
+    restart: always
+    volumes: ['./:/var/www/html']
+    environment:
+      WORDPRESS_DB_HOST: alfthdb:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+    networks:
+      - alfthwp
+networks:
+  alfthwp:
+volumes:
+  db_data:
