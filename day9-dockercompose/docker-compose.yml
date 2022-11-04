@@ -45,4 +45,4 @@ services:
 networks:
   alfthwp:
 volumes:
-  db_data:
+  db_data: 
