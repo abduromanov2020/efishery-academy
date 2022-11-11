@@ -15,9 +15,6 @@ Dengan membuat sistem tersebut kita dapat dengan mudah mengetahui berapa banyak 
 
 ![App Screenshot](https://github.com/abduromanov2020/efishery-academy/blob/master/final-task/erd.png)
 
-
-
-# How To Run Program
 ## Description Program
 
 Sistem ecommerce untuk mengelola pesanan pengguna, User pengguna, menambah mengedit menghapus stok produk, detail produk, dan juga kategori produk
