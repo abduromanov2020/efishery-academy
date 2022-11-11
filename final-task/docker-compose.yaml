@@ -1,0 +1,49 @@
+
+version: '1.1'
+
+services:
+  # Main postgresql database
+  db:
+    image: postgres:13
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - projectnetwork
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  # The main service
+  web:
+    container_name: ecommerce-project
+    image: abduromanov21/ecommerce-project:latest
+    build: .
+    ports:
+      - 1323:1323
+    restart: always
+    environment:
+      - DB_URL=host=postgres user=postgres password=postgres dbname=postgres port=5432
+    volumes:
+      - .:/app
+    networks:
+      - projectnetwork
+    depends_on:
+      db :
+        condition: service_healthy
+
+networks:
+  projectnetwork:
+    name: projectnetwork
+volumes:
+  db:
+  pg-admin:
+  web:
