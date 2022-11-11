@@ -55,7 +55,7 @@ func (cart CartProductHandler) GetListCartProduct(c echo.Context) error {
 		return c.JSON(http.StatusOK, response.BaseResponse{
 			Code:    http.StatusOK,
 			Message: "Empty Cart",
-			Data:    nil,
+			Data:    []entity.Cart_Product{},
 		})
 	}
 
@@ -126,6 +126,6 @@ func (cart CartProductHandler) DeleteCartProductByID(c echo.Context) error {
 	return c.JSON(http.StatusOK, response.BaseResponse{
 		Code:    http.StatusOK,
 		Message: "Success Delete Cart",
-		Data:    nil,
+		Data:    []entity.Cart_Product{},
 	})
 }

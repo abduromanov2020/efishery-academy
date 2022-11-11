@@ -27,7 +27,7 @@ func (p ProductDetailHandler) CreateProductDetail(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, response.BaseResponse{
 			Code:    http.StatusBadRequest,
 			Message: "Data Cannot Be Empty",
-			Data:    nil,
+			Data:    []entity.CreateProductDetailRequest{},
 		})
 	}
 
@@ -64,7 +64,7 @@ func (p ProductDetailHandler) GetListProductDetail(c echo.Context) error {
 		return c.JSON(http.StatusOK, response.BaseResponse{
 			Code:    http.StatusOK,
 			Message: "Empty List Product Detail",
-			Data:    nil,
+			Data:    []entity.Product_Detail{},
 		})
 	}
 
@@ -138,6 +138,6 @@ func (p ProductDetailHandler) DeleteProductDetailByID(c echo.Context) error {
 	return c.JSON(http.StatusOK, response.BaseResponse{
 		Code:    http.StatusOK,
 		Message: "Success Delete Product Detail",
-		Data:    nil,
+		Data:    []entity.Product_Detail{},
 	})
 }

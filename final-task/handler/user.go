@@ -27,7 +27,7 @@ func (h UserHandler) CreateUser(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, response.BaseResponse{
 			Code:    http.StatusBadRequest,
 			Message: "Data Cannot Be Empty",
-			Data:    nil,
+			Data:    []entity.CreateUserRequest{},
 		})
 	}
 
@@ -63,7 +63,7 @@ func (h UserHandler) GetListUser(c echo.Context) error {
 		return c.JSON(http.StatusNotFound, response.BaseResponse{
 			Code:    http.StatusNotFound,
 			Message: "Empty List User",
-			Data:    nil,
+			Data:    []entity.User{},
 		})
 	}
 
@@ -105,7 +105,7 @@ func (h UserHandler) UpdateUserByID(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, response.BaseResponse{
 			Code:    http.StatusBadRequest,
 			Message: "At Least One Field Must Be Filled",
-			Data:    nil,
+			Data:    []entity.UpdateUserRequest{},
 		})
 	}
 
@@ -143,6 +143,6 @@ func (h UserHandler) DeleteUserByID(c echo.Context) error {
 	return c.JSON(http.StatusOK, response.BaseResponse{
 		Code:    http.StatusOK,
 		Message: "Success Delete User",
-		Data:    nil,
+		Data:    []string{"User With ID : " + strconv.Itoa(id)},
 	})
 }

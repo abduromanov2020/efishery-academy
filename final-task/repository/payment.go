@@ -23,7 +23,7 @@ func NewPaymentRepository(db *gorm.DB) *PaymentRepository {
 }
 
 func (p PaymentRepository) Create(payment entity.Payment) error {
-	err := p.db.Create(&payment).Error
+	err := p.db.Debug().Create(&payment).Error
 	if err != nil {
 		return err
 	}

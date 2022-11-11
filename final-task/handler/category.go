@@ -27,7 +27,7 @@ func (category CategoryHandler) CreateCategory(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, response.BaseResponse{
 			Code:    http.StatusBadRequest,
 			Message: "Data Cannot Be Empty",
-			Data:    nil,
+			Data:    []entity.CreateCategoryRequest{},
 		})
 	}
 
@@ -106,7 +106,7 @@ func (category CategoryHandler) UpdateCategoryByID(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, response.BaseResponse{
 			Code:    http.StatusBadRequest,
 			Message: "Data Cannot Be Empty",
-			Data:    nil,
+			Data:    []entity.UpdateCategoryRequest{},
 		})
 	}
 
@@ -143,6 +143,6 @@ func (category CategoryHandler) DeleteCategoryByID(c echo.Context) error {
 	return c.JSON(http.StatusOK, response.BaseResponse{
 		Code:    http.StatusOK,
 		Message: "Success Delete Category",
-		Data:    nil,
+		Data:    []entity.Category{},
 	})
 }

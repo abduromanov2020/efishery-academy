@@ -33,7 +33,7 @@ func (cart CartHandler) GetListCart(c echo.Context) error {
 		return c.JSON(http.StatusOK, response.BaseResponse{
 			Code:    http.StatusOK,
 			Message: "Empty Cart",
-			Data:    nil,
+			Data:    []interface{}{},
 		})
 	}
 

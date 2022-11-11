@@ -1,8 +1,7 @@
 package entity
 
 type Payment struct {
-	ID     int    `gorm:"primaryKey" json:"id"`
-	CartID uint   `json:"cart_id"`
+	CartID uint   `json:"cart_id" gorm:"primaryKey"`
 	Cart   Cart   `gorm:"foreignKey:CartID"`
 	File   string `json:"file"`
 }

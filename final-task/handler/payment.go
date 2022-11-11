@@ -22,8 +22,12 @@ func (p PaymentHandler) CreatePayment(c echo.Context) error {
 	paymentRequest := entity.CreatePaymentRequest{}
 
 	file, _ := c.FormFile("file")
+	cId := c.FormValue("cart_id")
+
+	cartId, _ := strconv.Atoi(cId)
 
 	paymentRequest.File = file.Filename
+	paymentRequest.CartID = uint(cartId)
 
 	err := p.paymentUsecase.CreatePayment(paymentRequest)
 
@@ -58,7 +62,7 @@ func (p PaymentHandler) GetListPayment(c echo.Context) error {
 		return c.JSON(http.StatusOK, response.BaseResponse{
 			Code:    http.StatusOK,
 			Message: "Empty Payment",
-			Data:    nil,
+			Data:    []entity.Payment{},
 		})
 	}
 
@@ -106,6 +110,6 @@ func (p PaymentHandler) DeletePaymentByID(c echo.Context) error {
 	return c.JSON(http.StatusOK, response.BaseResponse{
 		Code:    http.StatusOK,
 		Message: "Success Delete Payment",
-		Data:    nil,
+		Data:    []entity.Payment{},
 	})
 }
